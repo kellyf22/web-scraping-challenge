@@ -7,15 +7,14 @@ import pandas as pd
 
 def init_browser():
     # @NOTE: Replace the path with your actual path to the chromedriver
-    executable_path = {"executable_path": ChromeDriverManager().install()"}
+    executable_path = {"executable_path": ChromeDriverManager().install()}
     return Browser("chrome", **executable_path, headless=False)
 
-def scrape_news():
+def scrape_mars():
     # get Latest Mars News
-
     url = 'https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest'
 
-    # Retrieve page with the requests module
+    # Retrieve news page with the requests module
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -27,32 +26,16 @@ def scrape_news():
     first_story_teaser = soup.find('div', class_='rollover_description_inner')
     news_p = first_story_teaser.text
 
-    # Store data in a dictionary
-    mars_news = {
-        "title": news_title,
-        "teaser": news_p
-    }
-
-    # Close the browser after scraping
-    browser.quit()
-
-    # Return results
-    return mars_news
-
-def scrape_jpl():
     #get featured image
     browser = init_browser()
     jpl_url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html'
     browser.visit(jpl_url)
+    jpl_html = browser.html
+    jpl_soup = BeautifulSoup(jpl_html, 'html.parser')
     jpl_img = jpl_soup.find('a', class_="showimg fancybox-thumbs")['href']
-    featured_image_url = jpl_url + jpl_img
-    browser.quit()
-
-    return featured_image_url
-
-def scrape_facts():
+    featured_image_url = jpl_url[:56] + jpl_img
+  
     #get mars facts
-    browser = init_browser()
     mars_facts_url = 'https://space-facts.com/mars/'
     
     #retrieve the table using pandas
@@ -66,14 +49,7 @@ def scrape_facts():
     mars_html_table = mars_html_table.replace('\n','')
     mars_html_table
 
-    browser.quit
-
-    return mars_html_table
-
-def scrape_hemi():
     #get 4 hemisphere images
-    browser = init_browser()
-
     mars_geo_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(mars_geo_url)
 
@@ -101,4 +77,11 @@ def scrape_hemi():
 
     browser.quit()
     
-    return pic_info
+    results_dict = {"news_title":news_title,
+                    "news_story":news_p,
+                    "feat_img":featured_image_url,
+                    "mars_facts":mars_html_table,
+                    "hemi_pics":pic_info
+                    }
+
+    return results_dict

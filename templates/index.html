@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Costa Rica Weather</title>
+  <title>Misison to Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
@@ -16,12 +16,15 @@
       <p>Dry Lake. Crater. Volcano. Martians.</p>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
     </div>
-    <img src="{{ mars.sloth_img }}" alt="Sloth">
-    <h2>The typical weather in Costa Rica is:</h2>
-    <h3>Max Temp: {{ vacation.max_temp }}</h3>
-    <h3>Min Temp: {{ vacation.min_temp }}</h3>
+    
+    <h2>The latest from Mars is:</h2>
+    <h3>{{ mars.news_title }} </h3>
+    <h3>{{ mars.news_story }} </h3>
+    <img src="{{ mars.feat_img }}" alt="jpl">
+    <table>{{ mars.mars_facts|safe }}</table>
+    <img src="{{ mars.hemi_pics[0].img_url }}" alt="{{ mars.hemi_pics[0].title }}"
   </div>
-  </div>
+  
 </body>
 
 </html>
