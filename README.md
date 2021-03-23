@@ -40,4 +40,4 @@ Next I used MongoDB with Flask templating to create a new HTML page that display
 
 * Finally, I created a template HTML file called `index.html` that will take the mars data dictionary and display all of the data in the appropriate HTML elements. 
 
-![table](Screenshot1.png)
+![scrape_mars](Screenshot_1.png)
