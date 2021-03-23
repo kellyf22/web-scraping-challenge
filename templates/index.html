@@ -6,25 +6,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Misison to Mars</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 
 <body>
   <div class="container-fluid">
     <div class="jumbotron text-center">
       <h1>Visit the...</h1>
-      <p>Dry Lake. Crater. Volcano. Martians.</p>
-      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
+      <p>Dry Lakes. Craters. Olympus Mons. Martians.</p>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get the Latest!</a></p>
     </div>
     
-    <h2>The latest from Mars is:</h2>
-    <h3>{{ mars.news_title }} </h3>
-    <h3>{{ mars.news_story }} </h3>
-    <img src="{{ mars.feat_img }}" alt="jpl">
-    <table>{{ mars.mars_facts|safe }}</table>
-    <img src="{{ mars.hemi_pics[0].img_url }}" alt="{{ mars.hemi_pics[0].title }}"
+    
+    <!-- <img src="https://astropedia.astrogeology.usgs.gov/download/Mars/Viking/cerberus_enhanced.tif/full.jpg" alt="?"> -->
+    
+    <div class="container">
+
+      <div class="row">
+        <div class="col-12">
+          <h2>Breaking News from the Red Planet!</h2>
+          <h3>{{ mars.news_title }} </h3>
+          <p>{{ mars.news_story }} </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-7">
+          <h3>Today's Featured Image from JPL</h3>
+          <img src="{{ mars.feat_img }}" class="img-fluid" alt="jpl">
+        </div>
+        <div class="col-5">
+          <!-- <table class="table justify-content-start">{{ mars.mars_facts|safe }}</table> -->
+          <h3>Just the Facts</h3>
+          {{ mars.mars_facts|safe }}
+        </div>
+      </div>
+      
+      <div>
+        <p></p>
+        <h2>Mars Hemispheres</h2>
+      </div>
+
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">          
+          <div class="card">
+            <img src="{{ mars.hemi_pics[0].img_url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ mars.hemi_pics[0].title }}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="{{ mars.hemi_pics[1].img_url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ mars.hemi_pics[1].title }}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="{{ mars.hemi_pics[2].img_url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ mars.hemi_pics[2].title }}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="{{ mars.hemi_pics[3].img_url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ mars.hemi_pics[3].title }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
-  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>  
 </body>
 
 </html>

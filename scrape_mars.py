@@ -64,15 +64,16 @@ def scrape_mars():
 
     hemi_page_urls = ['https://astrogeology.usgs.gov' + url for url in hemi_urls]
 
-    pic_info = [] #this one will be the list of dictionaries
+    pic_info = [] #this will be the list of dictionaries
 
     for url in hemi_page_urls:
         browser.visit(url)
         mars_pic_html = browser.html
         mars_pic_soup = BeautifulSoup(mars_pic_html, 'html.parser')
-        result = mars_pic_soup.find_all('dd')
-        pic_url = result[1].find('a')['href']
-        pic_name = result[1].text.replace('_',' ').replace(' enhanced.tif', ' hemisphere').title()
+        result = mars_pic_soup.find_all('div', class_='downloads')
+        pic_url_1 = result[0].find('li')
+        pic_url = pic_url_1.find('a')['href']
+        pic_name = pic_url[62:].replace('_',' ').replace(' enhanced.tif/full.jpg', ' hemisphere').title()
         pic_info.append({"title":pic_name, "img_url":pic_url})
 
     browser.quit()
