@@ -1,6 +1,6 @@
-# Web Scraping Homework - Mission to Mars
+# Web Scraping Exercise - Mission to Mars
 
-In this assignment, I built a web application that scrapes various websites for data related to Mars and displays the information in a single HTML page. 
+In this bootcamp assignment, I built a web application that scrapes various websites for data related to Mars and displays the information in a single HTML page. 
 
 ## Step 1 - Scraping
 
